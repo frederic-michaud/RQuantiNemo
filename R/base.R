@@ -60,7 +60,7 @@ setMethod(f = "run",
             comand <-  getCommand(object)
             message("excuting ", comand , "\n")
             if(verbose){
-              result <- system2(comand[1],comand[2],stdout = "output.log")
+              result <- system2(comand[1],comand[2])
             }
             else{
               result <- system2(comand[1],comand[2],stdout = "output.log")
@@ -118,6 +118,26 @@ setMethod(f = "addFile",
 )
 
 
+#' Run a QuantiNemo simulation
+#' @param file.name The name of the file that you want to add, as defined by QuantiNemo
+#' @param file.content A variable of dataframe type containing the needed information
+#' @examples
+#' my_sim <- new("simulation")
+#' my_sim <- setParameter(my_sim,"quanti_all",5)
+#' print(my_sim)
 
 
+print.simulation <- function(object,...){
+  cat(rep("-",40),"\n")
+  cat("Parameters", "\n") 
+  cat(rep("-",40),"\n")
+  for (parameter in names(object@parameters)){
+    cat(parameter, rep(" ",abs(28-nchar(parameter))), object@parameters[[parameter]],"\n", sep="")
+  }    
+  cat(rep("-",40),"\n")
+  cat("Output folder & files", "\n") 
+  cat(rep("-",40),"\n")
+  cat("\"",object@sim.directory, object@sim.name, "\"","\n", sep="")
+}
+  
 
