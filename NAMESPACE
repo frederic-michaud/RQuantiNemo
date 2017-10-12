@@ -1,0 +1,13 @@
+exportPattern("^[[:alpha:]]+")
+exportMethods(
+    "addFile",
+    "initialize",
+    "loadStat",
+    "run",
+    "setParameter",
+    "writeInput" ,
+    "loadPheno"
+)
+exportClasses(
+    "simulation" 
+)

@@ -1,0 +1,9 @@
+--- q u a n t i N E M O 2 ---
+    LOGFILE
+
+
+| basename                                | simfolder                               |      start time     |      stop time      | duration   | repl done | mean rpl   | mean gen | version                 | hostname             | output files 
+| simulation                              | /Users/frederic/Desktop/test_quantinemo2/RQuantiNemo/my_simulation/| 10-10-2017 13:51:02 | 10-10-2017 13:51:02 |   00:00:00 |         1 |   00:00:00 |      100 | [Oct  2 2017; 09:12:06] | -                    |
+| simulation                              | /Users/frederic/Desktop/test_quantinemo2/RQuantiNemo/my_simulation/| 10-10-2017 13:55:39 | 10-10-2017 13:55:39 |   00:00:00 |         1 |   00:00:00 |      100 | [Oct  2 2017; 09:12:06] | -                    |
+| simulation                              | /Users/frederic/Desktop/test_quantinemo2/RQuantiNemo/my_simulation/| 10-10-2017 14:00:33 | 10-10-2017 14:00:34 |   00:00:01 |         1 |   00:00:01 |      100 | [Oct  2 2017; 09:12:06] | -                    |
+| simulation                              | /Users/frederic/Desktop/test_quantinemo2/RQuantiNemo/my_simulation/| 10-10-2017 14:00:45 | 10-10-2017 14:00:45 |   00:00:00 |         1 |   00:00:00 |      100 | [Oct  2 2017; 09:12:06] | -                    |

@@ -1,0 +1,25 @@
+#############################################
+#           q u a n t i N E M O 2           #
+#   version 0.9.0 [Oct  2 2017; 09:12:06]   #
+#                                           #
+#              Simulation log               #
+# simulation started on 10-10-2017 14:00:45 #
+#              (log as input)               #
+#############################################
+
+
+## simulation
+_settings_file /Users/frederic/Desktop/test_package/my_simulation.ini
+folder my_simulation
+seed {1507636845 16073}
+
+## metapop
+generations 100
+patch_capacity 100
+
+
+#############################################
+#  simulation ended on 10-10-2017 14:00:45  #
+#                                           #
+#  duration of the simulation was 00:00:00  #
+#############################################
