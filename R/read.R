@@ -36,3 +36,23 @@ setMethod(f = "loadPheno",
             return(read.table(paste(object@sim.directory, object@sim.name,"/simulation",post.info,".phe",sep=""),skip=2))
           }
 )
+
+setGeneric(name="loadStatRep",
+           def = function(object){standardGeneric("loadStatRep")}
+)
+
+#' Load the statistic for various replicate of a QuantiNemo simulation
+#' @examples
+#' my_sim <- new("simulation")
+#' my_sim <- setParameter(my_sim,"stat","adlt.ind")
+#' run(my_sim)
+#' stat.r <- loadStatRep(my_sim,"stat","adlt.ind")
+#' for (i in 1:10){
+#'   plot(stat.r$adlt.ind[stat.r$replicate==i])
+#'  }
+setMethod(f = "loadStatRep",
+          signature = "simulation",
+          definition= function(object){
+            return(read.table(paste(object@sim.directory, object@sim.name,"/simulation_stats.txt",sep=""),header = TRUE))
+          }
+)
