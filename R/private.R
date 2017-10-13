@@ -65,7 +65,7 @@ setMethod(f = "writeMainFile",
             }
             for(file in names(object@params.file))
             {
-              cat(paste(file,paste('"',file,'"',sep=""),"\n",sep = "\t \t"))
+              cat(paste(file,paste('"',paste(file,".dat",sep=""),'"',sep=""),"\n",sep = "\t \t"))
             }
             sink()
           
@@ -86,13 +86,12 @@ setGeneric(name="writeDataframeFiles",
 setMethod(f = "writeDataframeFiles",
           signature = "simulation",
           definition= function(object){
-            for(file in names(object@params.file))
-            {
+            for(file in names(object@params.file)){
               if(file=="quanti_ini_genotypes"){
                 next
               }
               df = object@params.file[[file]]
-              sink(file)
+              sink(paste(object@sim.directory,file,".dat",sep=""))
               cat("[FILE_INFO]{\n")
               params.name = colnames(df)
               nb.params = length(params.name)
