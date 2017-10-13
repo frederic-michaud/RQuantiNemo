@@ -5,7 +5,6 @@ setClass(
                                   sim.directory = "character",   #where is the executable and will the file be written
                                   exe.directory = "character",      #where is the executable
                                   exe.name = "character",     #what is the name of the executable
-                                  stat = "data.frame",      #The output of the simulation after runing QN
                                   params.file="list"     #A list containing all the parameters to be written in external file. Key is the name of the file, as defined by QN, and the value is a dataframe
                                   )
 )

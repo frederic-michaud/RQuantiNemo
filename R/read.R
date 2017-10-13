@@ -7,13 +7,12 @@ setGeneric(name="loadStat",
 #' my_sim <- new("simulation")
 #' my_sim <- setParameter(my_sim,"stat","adlt.ind")
 #' run(my_sim)
-#' my_sim <- loadStat(my_sim)
-#' plot(my_sim@stat$adlt.ind)
+#' stat <- loadStat(my_sim)
+#' plot(stat$adlt.ind)
 setMethod(f = "loadStat",
           signature = "simulation",
           definition= function(object){
-            object@stat <- read.table(paste(object@sim.directory, object@sim.name,"/simulation_mean.txt",sep=""),header = TRUE)
-            return(object)
+            return(read.table(paste(object@sim.directory, object@sim.name,"/simulation_mean.txt",sep=""),header = TRUE))
           }
 )
 

@@ -17,23 +17,15 @@ test_that('Writting files', {
 
 test_that('Running a minimal simulation', {
   my_sim = new("simulation",
-               parameters = list("generations" = 100, "patch_capacity" = 100),
-               sim.dir = "/Users/frederic/Desktop/test_package/",
-               exe.dir = "/Users/frederic/Desktop/test_package/",
-               exe.name = "quantiNemo2"
+               parameters = list("generations" = 100, "patch_capacity" = 100)
   )
-  system2("touch","/Users/frederic/Desktop/test_package/quantiNemo2.log")
-  system2("rm", " /Users/frederic/Desktop/test_package/quantiNemo2.log")
-  res <- run(my_sim)
+  res <- run(my_sim, verbose = FALSE)
   expect_equal(0,res)
 })
 
 test_that('Getting the last part of a name for a particular generation and replicate', {
   my_sim = new("simulation",
-               parameters = list("generations" = 1250, "replicates" = 10),
-               sim.dir = "/Users/frederic/Desktop/test_package/",
-               exe.dir = "/Users/frederic/Desktop/test_package/",
-               exe.name = "quantiNemo2"
+               parameters = list("generations" = 1250, "replicates" = 10)
   )
   expect_equal(getPostInfo(my_sim,replicate = 5, generation = -5),"_g1246_r05")
   expect_equal(getPostInfo(my_sim,replicate = 0, generation = 100),"_g0100")
