@@ -22,20 +22,69 @@ setGeneric(name="loadPheno",
 )
 
 #' Load the Phenotype of a QuantiNemo simulation
+#' @param generation The generation from which we want to load the data. A Negative number mean starting from the end. 
+#' @param replicate The replicate from which we want to load the data. A value of 0 mean that there is only one replicate. 
 #' @examples
 #' my_sim <- new("simulation")
 #' my_sim <- setParameter(my_sim,"quanti_loci",1)
 #' my_sim <- setParameter(my_sim,"quanti_save_phenotype",1)
 #' run(my_sim)
-#' my_sim <- loadPheno(my_sim)
-#' table(my_sim@Pheno$V2)
+#' pheno <- loadPheno(my_sim)
+#' table(pheno$V2)
 setMethod(f = "loadPheno",
           signature = "simulation",
             definition= function(object,generation, replicate){
             post.info <- getPostInfo(object, generation, replicate)
-            return(read.table(paste(object@sim.directory, object@sim.name,"/simulation",post.info,".phe",sep=""),skip=2))
+            if ("quanti_nb_trait" %in% names(object@parameters)){
+              nb.trait = object@parameters$quanti_nb_trait
+            }
+            else{
+              nb.trait = 1
+            }
+            return(read.table(paste(object@sim.directory, object@sim.name,"/simulation",post.info,".phe",sep=""),skip=1 + nb.trait))
           }
 )
+
+
+setGeneric(name="loadGeno",
+           def = function(object,generation = -1,replicate= 0){standardGeneric("loadGeno")}
+)
+
+#' Load the Genotype of a QuantiNemo simulation
+#' @param generation The generation from which we want to load the data. A Negative number mean starting from the end. 
+#' @param replicate The replicate from which we want to load the data. A value of 0 mean that there is only one replicate. 
+#' @examples
+#' my_sim <- new("simulation")
+#' my_sim <- setParameter(my_sim,"quanti_loci",1)
+#' my_sim <- setParameter(my_sim,"quanti_save_genotype",1)
+#' run(my_sim)
+#' geno <- loadGeno(my_sim)
+#' table(geno$V2)
+setMethod(f = "loadGeno",
+          signature = "simulation",
+          definition= function(object,generation, replicate){
+            post.info <- getPostInfo(object, generation, replicate)
+            if ("quanti_nb_trait" %in% names(object@parameters)){
+              nb.trait = object@parameters$quanti_nb_trait
+            }
+            else{
+              nb.trait = 1
+            }
+            if ("quanti_loci" %in% names(object@parameters)){
+              nb.loci = object@parameters$quanti_loci
+            }
+            else{
+              nb.loci = 0
+            }
+            return(read.table(paste(object@sim.directory, object@sim.name, "/simulation",post.info,".dat",sep=""),
+                              skip=1 + nb.trait*nb.loci,
+                              ,colClasses=c("character")
+                              ))
+          }
+)
+
+
+
 
 setGeneric(name="loadStatRep",
            def = function(object){standardGeneric("loadStatRep")}

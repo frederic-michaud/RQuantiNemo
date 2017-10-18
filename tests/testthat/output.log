@@ -8,9 +8,7 @@ Authors:    Samuel Neuenschwander (samuel.neuenschwander@unil.ch) &
             University of Lausanne, Switzerland
 
 Reading settings file './my_simulation.ini' ...
-Reading settings file './my_simulation.ini' done (7 parameters)
-
-***WARNING*** Parameter patch_ini_size: The matrix length is not an entire subset of the number of patches!
+Reading settings file './my_simulation.ini' done (8 parameters)
 
 SETTINGS (my_simulation.ini)
   Simulation:
@@ -22,32 +20,31 @@ SETTINGS (my_simulation.ini)
     random generator initialized by the time
 
   Loaded traits: 
-    CAUTION: no traits (genetic data) are simulated!
+    1. quantitative trait: 3 loci; 3 alleles; neutral trait;
+    2. quantitative trait: 3 loci; 3 alleles; neutral trait;
+    3. quantitative trait: 3 loci; 3 alleles; neutral trait;
 
   Life cycle sequence:
     1. breed
-    2. save_stats
-    3. save_files
-    4. aging
-    5. dispersal
+    2. save_files
+    3. aging
+    4. dispersal
 
   Metapopulation:
-    11 patches (K_tot=110)
-    11 initial populations (N_tot=56)
+    1 patches (K_tot=10)
     Migration model: no migration
     Mating system: random mating (hermaphrodite)
 
   Genetic map:
-    CAUTION: no loci are simulated!
+    9 independent loci
 
   Output:
     (to folder './my_simulation')
-    statistics (12 statistics) computed at 5 generations
+    genotype (quanti) computed at 5 generations
 
 
 SIMULATION    replicate 1/1 [00:00:00] 1/5   RAM: 0.000000 MB    replicate 1/1 [00:00:00] 2/5   RAM: 0.000000 MB    replicate 1/1 [00:00:00] 3/5   RAM: 0.000000 MB    replicate 1/1 [00:00:00] 4/5   RAM: 0.000000 MB    replicate 1/1 [00:00:00] 5/5   RAM: 0.000000 MB
 
 ----- SIMULATION done (CPU time: 00:00:00s) -----
 
-Caution: 1 WARNINGs were raised. See above for details.
 quantiNemo2 terminated successfully!

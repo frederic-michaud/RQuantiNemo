@@ -31,3 +31,32 @@ parameters = list("generations" = 5,
   expect_equal(stat.patch[1, 1],1)
   expect_equal(stat.patch[5, 1],5)
 })
+
+
+test_that('Loading Phenotype', {
+  parameters = list("generations" = 5,
+                    "patch_capacity" = 10,
+                    "quanti_loci" = 3,
+                    "quanti_nb_trait" = 3,
+                    "quanti_save_phenotype" = 1)
+  my_sim = new("simulation", parameters = parameters)
+  run(my_sim, verbose = F)
+  pheno <- loadPheno(my_sim)
+  expect_equal(pheno[1, 1], 1)
+})
+
+test_that('Loading Genotype', {
+  parameters = list("generations" = 5,
+                    "patch_capacity" = 10,
+                    "quanti_loci" = 3,
+                    "quanti_all" = 3,
+                    "quanti_nb_trait" = 3,
+                    "quanti_save_genotype" = 1)
+  my_sim = new("simulation", parameters = parameters)
+  run(my_sim, verbose = F)
+  geno <- loadGeno(my_sim)
+  expect_equal(geno[1, 1], "1")
+  expect_true(geno[1, 2] %in% c("11","12","13","21","22","23","31","32","33"))
+
+})
+
