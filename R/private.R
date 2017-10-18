@@ -65,7 +65,7 @@ setMethod(f = "writeMainFile",
             }
             for(file in names(object@params.file))
             {
-              cat(paste(file,paste('"',paste(file,".dat",sep=""),'"',sep=""),"\n",sep = "\t \t"))
+              cat(paste(file,paste('"',paste(file,".ini",sep=""),'"',sep=""),"\n",sep = "\t \t"))
             }
             sink()
           
@@ -87,11 +87,11 @@ setMethod(f = "writeDataframeFiles",
           signature = "simulation",
           definition= function(object){
             for(file in names(object@params.file)){
-              if(file=="quanti_ini_genotypes"){
+              if(file=="quanti_ini_genotypes" | file=="ntrl_ini_genotypes"){
                 next
               }
               df = object@params.file[[file]]
-              sink(paste(object@sim.directory,file,".dat",sep=""))
+              sink(paste(object@sim.directory,file,".ini",sep=""))
               cat("[FILE_INFO]{\n")
               params.name = colnames(df)
               nb.params = length(params.name)
@@ -125,12 +125,23 @@ setMethod(f = "writeGenoFile",
             #printing genotype file
             for(file in names(object@params.file))
             {
-              if(file=="quanti_ini_genotypes")
+              if(file=="quanti_ini_genotypes" | file=="ntrl_ini_genotypes")
               {
-                print(paste(c("printing into :",file), sep = ""))
-                sink(file)
-                cat ("1 1 2 1 \n")
-                cat("n1_l1 \n")
+                file.name = paste(object@sim.directory,file,".ini",sep="")
+                message(c("printing into :",file.name, sep = ""))
+                sink(file.name)
+                ini.size <- getParameter(object, "ini_size", default = 0)
+                if(ini.size ==0) {ini.size <- getParameter(object, "patch_capacity", default = 1)}
+                cat(getParameter(object, "patch_number", default = 1),
+                    getParameter(object, "ntrl_loci", default = 1),
+                    ini.size * getParameter(object, "patch_number", default = 1),
+                    floor(log10(getParameter(object, "ntrl_all", default = 255))) + 1,
+                    "\n")
+                for(trait in 1:getParameter(object, "ntrl_nb_trait", default = 1)){
+                  for(allele in 1:getParameter(object, "ntrl_loci", default = 1)){
+                    cat("n",as.character(trait),"_l",as.character(allele), "\n", sep = "")
+                  }
+                }
                 df = object@params.file[[file]]
                 for(i in 1:nrow(df)){
                   cat(as.matrix(df[i, ]))
@@ -172,3 +183,32 @@ setMethod(f = "getPostInfo",
             return(paste(value.g, value.r,sep=""))
           }
 )
+
+
+
+setGeneric(name="getParameter",
+           def = function(object, parameter, default = 0){
+             standardGeneric("getParameter")
+           }
+)
+#' Get the value of a parameter if it exist or the default value otherwise
+#' @param parameter the parameter which we want to extract
+#' @param default The default value which will be return in case the parameter does not exist
+#' @examples
+#' my_sim <- new("simulation", parameters = list("generations" = 100)
+#' get_parameter(my_sim, "generations") # return 100
+#' get_parameter(my_sim, "patch_number") # return 0
+#' get_parameter(my_sim, "patch_number", default = 1) # return 1
+setMethod(f = "getParameter",
+          signature = "simulation",
+          definition= function(object, parameter, default = 0 ){
+            if (parameter %in% names(object@parameters)){
+              value <- object@parameters[[parameter]]
+            }
+            else{
+              value <- default
+            }
+            return(value)
+          }
+)
+

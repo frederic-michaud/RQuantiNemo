@@ -35,12 +35,7 @@ setMethod(f = "loadPheno",
           signature = "simulation",
             definition= function(object,generation, replicate){
             post.info <- getPostInfo(object, generation, replicate)
-            if ("quanti_nb_trait" %in% names(object@parameters)){
-              nb.trait = object@parameters$quanti_nb_trait
-            }
-            else{
-              nb.trait = 1
-            }
+            nb.trait <- getParameter(object, "quanti_nb_trait", default = 1 )
             return(read.table(paste(object@sim.directory, object@sim.name,"/simulation",post.info,".phe",sep=""),skip=1 + nb.trait))
           }
 )
@@ -64,18 +59,9 @@ setMethod(f = "loadGeno",
           signature = "simulation",
           definition= function(object,generation, replicate){
             post.info <- getPostInfo(object, generation, replicate)
-            if ("quanti_nb_trait" %in% names(object@parameters)){
-              nb.trait = object@parameters$quanti_nb_trait
-            }
-            else{
-              nb.trait = 1
-            }
-            if ("quanti_loci" %in% names(object@parameters)){
-              nb.loci = object@parameters$quanti_loci
-            }
-            else{
-              nb.loci = 0
-            }
+            nb.trait = getParameter(object, "quanti_nb_trait", default = 1) + getParameter(object, "ntrl_nb_trait", default = 0)
+            nb.loci =  getParameter(object, "quanti_loci", default = 0) + getParameter(object, "ntrl_loci", default = 0)
+           
             return(read.table(paste(object@sim.directory, object@sim.name, "/simulation",post.info,".dat",sep=""),
                               skip=1 + nb.trait*nb.loci,
                               ,colClasses=c("character")
