@@ -56,3 +56,40 @@ setMethod(f = "loadStatRep",
             return(read.table(paste(object@sim.directory, object@sim.name,"/simulation_stats.txt",sep=""),header = TRUE))
           }
 )
+
+
+
+setGeneric(name="loadStatPatch",
+           def = function(object, stat.name){standardGeneric("loadStatPatch")}
+)
+
+#' Load the statistic (mean) of a QuantiNemo simulation for each patch and return it as a matrix
+#' @param stat.name String representing the name of the statisitic to load
+#' @examples
+#' parameters = list("generations" = 5,
+#'                   "patch_capacity" = 100,
+#'                   "patch_number" = 1000,
+#'                   "stat" = "{adlt.nbInd_p}",
+#'                   "patch_ini_size", "{seq(1,1000,1000)}")
+#' my_sim.base = new("simulation", parameters = parameters)
+#' run(my_sim, verbose =FALSE)
+#' plot(loadStatPatch(my_sim, "adlt.nbInd_p")[1, ])
+
+setMethod(f = "loadStatPatch",
+          signature = "simulation",
+          definition= function(object, stat.name){
+            stat <- loadStat(object)
+            if(!("patch_number" %in% names(object@parameters))){
+              stop("This simulation has only one patch")
+            }
+            n.patch = object@parameters$patch_number
+            width = floor(log10(n.patch))+1
+            n.generation = max(stat$generation)
+            stat.patch = matrix(0, nrow = n.patch, ncol = n.generation)
+            for (patch in 1:n.patch){
+              patch.name = paste(stat.name,formatC(patch, width = width,  flag = "0"),sep="")
+              stat.patch[patch, ] <- stat[[patch.name]]
+            }
+            return(stat.patch)
+          }
+)
