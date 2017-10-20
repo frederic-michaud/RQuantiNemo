@@ -127,18 +127,19 @@ setMethod(f = "writeGenoFile",
             {
               if(file=="quanti_ini_genotypes" | file=="ntrl_ini_genotypes")
               {
+                pre = substr(file, 1, nchar(file)-14) #either quanti or ntrl
                 file.name = paste(object@sim.directory,file,".ini",sep="")
                 message(c("printing into :",file.name, sep = ""))
                 sink(file.name)
                 ini.size <- getParameter(object, "ini_size", default = 0)
                 if(ini.size ==0) {ini.size <- getParameter(object, "patch_capacity", default = 1)}
                 cat(getParameter(object, "patch_number", default = 1),
-                    getParameter(object, "quanti_loci", default = 1),
+                    getParameter(object, paste(pre, "_loci", collapse = ""), default = 1),
                     ini.size * getParameter(object, "patch_number", default = 1),
-                    floor(log10(getParameter(object, "quanti_all", default = 255))) + 1,
+                    floor(log10(getParameter(object, paste(pre, "_all", collapse = ""), default = 255))) + 1,
                     "\n")
-                for(trait in 1:getParameter(object, "quanti_nb_trait", default = 1)){
-                  for(allele in 1:getParameter(object, "quanti_loci", default = 1)){
+                for(trait in 1:getParameter(object, paste(pre, "_nb_trait", collapse = ""), default = 1)){
+                  for(allele in 1:getParameter(object, paste(pre, "_loci", collapse = ""), default = 1)){
                     cat("n",as.character(trait),"_l",as.character(allele), "\n", sep = "")
                   }
                 }
