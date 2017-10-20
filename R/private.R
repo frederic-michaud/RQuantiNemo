@@ -19,7 +19,7 @@ setMethod(f = "getCommand",
 )
 
 setGeneric(name="writeInput",
-           def = function(object){
+           def = function(object, verbose = TRUE){
              standardGeneric("writeInput")
            }
 )
@@ -30,18 +30,18 @@ setGeneric(name="writeInput",
 #' writeInput(my_simulation)
 setMethod(f = "writeInput",
           signature = "simulation",
-          definition= function(object){
+          definition= function(object, verbose = TRUE){
           if(!dir.exists(object@sim.directory)){
              dir.create(object@sim.directory)
           }
-           writeMainFile(object)
+           writeMainFile(object, verbose = verbose)
            writeGenoFile(object)
            writeDataframeFiles(object)
           }
 )
 
 setGeneric(name="writeMainFile",
-           def = function(object){
+           def = function(object, verbose = TRUE){
              standardGeneric("writeMainFile")
            }
 )
@@ -52,9 +52,9 @@ setGeneric(name="writeMainFile",
 #' writeMainFile(my_simulation)
 setMethod(f = "writeMainFile",
           signature = "simulation",
-          definition= function(object){
+          definition= function(object, verbose = TRUE){
             file.name = paste(object@sim.directory,object@sim.name,".ini",sep="")
-            message(c("printing into :",file.name, sep = ""))
+            if(verbose) {message(c("printing into :",file.name, sep = ""))}
             sink(file.name)
             #printing output folder
             cat(paste("folder",paste(object@sim.directory, object@sim.name,sep=""),"\n",sep = "\t \t"))
@@ -133,12 +133,12 @@ setMethod(f = "writeGenoFile",
                 ini.size <- getParameter(object, "ini_size", default = 0)
                 if(ini.size ==0) {ini.size <- getParameter(object, "patch_capacity", default = 1)}
                 cat(getParameter(object, "patch_number", default = 1),
-                    getParameter(object, "ntrl_loci", default = 1),
+                    getParameter(object, "quanti_loci", default = 1),
                     ini.size * getParameter(object, "patch_number", default = 1),
-                    floor(log10(getParameter(object, "ntrl_all", default = 255))) + 1,
+                    floor(log10(getParameter(object, "quanti_all", default = 255))) + 1,
                     "\n")
-                for(trait in 1:getParameter(object, "ntrl_nb_trait", default = 1)){
-                  for(allele in 1:getParameter(object, "ntrl_loci", default = 1)){
+                for(trait in 1:getParameter(object, "quanti_nb_trait", default = 1)){
+                  for(allele in 1:getParameter(object, "quanti_loci", default = 1)){
                     cat("n",as.character(trait),"_l",as.character(allele), "\n", sep = "")
                   }
                 }

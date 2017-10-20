@@ -55,16 +55,16 @@ setGeneric(name="run",
 setMethod(f = "run",
           signature = "simulation",
           definition = function(object, verbose = TRUE){
-            writeInput(object)
+            writeInput(object, verbose = verbose)
             comand <-  getCommand(object)
-            message("excuting ", comand , "\n")
+            if (verbose){message("excuting ", comand , "\n")}
             if(verbose){
               result <- system2(comand[1],comand[2])
             }
             else{
               result <- system2(comand[1],comand[2],stdout = "output.log")
             }
-            if(result & verbose){
+            if(result){
               warning("The simulation failed to run \n")
             }
             return(result)
