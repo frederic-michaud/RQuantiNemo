@@ -5,8 +5,10 @@ exportMethods(
     "loadStat",
     "run",
     "setParameter",
-    "writeInput" ,
-    "loadPheno"
+    "loadPheno",
+    "loadGeno",
+    "LoadStatRep",
+    "LoadStatPatch"
 )
 exportClasses(
     "simulation" 

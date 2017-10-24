@@ -27,7 +27,6 @@ A simulation object ready to be run.
 Build a minimal object for a QuantiNemo simulation
 }
 \examples{
-my_simulation <- new("simulation", parameters = (list(generations = 1000, patch_capacity =100)))
-run(my_simulation)
+my_simulation <- new("simulation", parameters = (list(generations = 1000, patch_capacity =100)), sim.name = "my_new_sim")
 
 }

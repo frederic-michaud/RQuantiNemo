@@ -18,8 +18,7 @@ setClass(
 #' @param exe.name Name of the executable
 #' @return A simulation object ready to be run.
 #' @examples
-#' my_simulation <- new("simulation", parameters = (list(generations = 1000, patch_capacity =100)))
-#' run(my_simulation)
+#' my_simulation <- new("simulation", parameters = (list(generations = 1000, patch_capacity =100)), sim.name = "my_new_sim")
 #' 
 setMethod(
   f ="initialize",
@@ -43,15 +42,16 @@ setMethod(
 )
 
 
+#' Run a QuantiNemo simulation
+#' @param verbose If we want to display information about the simulation and the standard output of QuantiNemo. 
+#' @examples
+#' my_simulation <- new("simulation")
+#' run(my_simulation)
 setGeneric(name="run",
            def = function(object, verbose=TRUE){standardGeneric("run")}
 )
 
 
-#' Run a QuantiNemo simulation
-#' @examples
-#' my_simulation <- new("simulation")
-#' run(my_simulation)
 setMethod(f = "run",
           signature = "simulation",
           definition = function(object, verbose = TRUE){
@@ -73,41 +73,40 @@ setMethod(f = "run",
 
 
 
-setGeneric(name="setParameter",
-           def = function(object,name,value){standardGeneric("setParameter")}
-)
-
-#' Run a QuantiNemo simulation
+#' Add a new parameter to a quantiNemo simulation. 
 #' @param name The name of the parameter that you want to set. It has to be a known parameter for QuantiNemo.
 #' @param value The value of the parameter that you want to set. It can be a number if it's a simple parameter or a string for more complex parameter
 #' @examples
 #' my_sim <- new("simulation")
-#' my_sim  <- setParameter(my_sim,"quanti_all",5)
-#' run(my_simulation)
+#' my_sim  <- setParameter(my_sim,"patch_number",5)
+#' my_sim  <- setParameter(my_sim,"patch_ini_size","{10 100 10 100 67}")
+setGeneric(name="setParameter",
+           def = function(object,name,value){standardGeneric("setParameter")}
+)
+
 setMethod(f = "setParameter",
           signature = "simulation",
           definition= function(object, name, value){
-            #object@parameters <- c(object@parameters, as.character(name)=value)
             object@parameters[[name]] = value
             return(object)
           }
 )
 
 
-
-setGeneric(name="addFile",
-           def = function(object,file.name,file.content){standardGeneric("addFile")}
-)
-
-#' Run a QuantiNemo simulation
+#' Add an input file  to quantiNemo. 
 #' @param file.name The name of the file that you want to add, as defined by QuantiNemo
-#' @param file.content A variable of dataframe type containing the needed information
+#' @param file.content A dataframe type containing the needed information. The name of the Column should be the one given by Quantinemo
 #' @examples
 #' my_sim <- new("simulation")
 #' my_sim <- setParameter(my_sim,"quanti_all",5)
 #' alleles <- data.frame(locus = rep(1,5),allele = seq(1,5),value = seq(-2,2))
 #' my_sim <-  addFile(my_sim, "quanti_allelic_file",alleles)
 #' run(my_sim)
+setGeneric(name="addFile",
+           def = function(object,file.name,file.content){standardGeneric("addFile")}
+)
+
+
 setMethod(f = "addFile",
           signature = "simulation",
           definition= function(object,file.name,file.content){
@@ -117,14 +116,13 @@ setMethod(f = "addFile",
 )
 
 
-#' Run a QuantiNemo simulation
+#' Display basic information about a quantiNemo simulation
 #' @param file.name The name of the file that you want to add, as defined by QuantiNemo
 #' @param file.content A variable of dataframe type containing the needed information
 #' @examples
-#' my_sim <- new("simulation")
+#' my_sim <- new("simulation", sim.name = "test72")
 #' my_sim <- setParameter(my_sim,"quanti_all",5)
 #' print(my_sim)
-
 
 print.simulation <- function(object,...){
   cat(rep("-",40),"\n")

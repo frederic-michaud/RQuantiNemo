@@ -1,7 +1,3 @@
-setGeneric(name="loadStat",
-           def = function(object){standardGeneric("loadStat")}
-)
-
 #' Load the statistic of a QuantiNemo simulation
 #' @examples
 #' my_sim <- new("simulation")
@@ -9,6 +5,10 @@ setGeneric(name="loadStat",
 #' run(my_sim)
 #' stat <- loadStat(my_sim)
 #' plot(stat$adlt.ind)
+setGeneric(name="loadStat",
+           def = function(object){standardGeneric("loadStat")}
+)
+
 setMethod(f = "loadStat",
           signature = "simulation",
           definition= function(object){
@@ -16,10 +16,6 @@ setMethod(f = "loadStat",
           }
 )
 
-
-setGeneric(name="loadPheno",
-           def = function(object,generation = -1,replicate= 0){standardGeneric("loadPheno")}
-)
 
 #' Load the Phenotype of a QuantiNemo simulation
 #' @param generation The generation from which we want to load the data. A Negative number mean starting from the end. 
@@ -31,6 +27,10 @@ setGeneric(name="loadPheno",
 #' run(my_sim)
 #' pheno <- loadPheno(my_sim)
 #' table(pheno$V2)
+setGeneric(name="loadPheno",
+           def = function(object,generation = -1,replicate= 0){standardGeneric("loadPheno")}
+)
+
 setMethod(f = "loadPheno",
           signature = "simulation",
             definition= function(object,generation, replicate){
@@ -38,11 +38,6 @@ setMethod(f = "loadPheno",
             nb.trait <- getParameter(object, "quanti_nb_trait", default = 1 )
             return(read.table(paste(object@sim.directory, object@sim.name,"/simulation",post.info,".phe",sep=""),skip=1 + nb.trait))
           }
-)
-
-
-setGeneric(name="loadGeno",
-           def = function(object,generation = -1,replicate= 0){standardGeneric("loadGeno")}
 )
 
 #' Load the Genotype of a QuantiNemo simulation
@@ -55,6 +50,10 @@ setGeneric(name="loadGeno",
 #' run(my_sim)
 #' geno <- loadGeno(my_sim)
 #' table(geno$V2)
+setGeneric(name="loadGeno",
+           def = function(object,generation = -1,replicate= 0){standardGeneric("loadGeno")}
+)
+
 setMethod(f = "loadGeno",
           signature = "simulation",
           definition= function(object,generation, replicate){
@@ -71,11 +70,6 @@ setMethod(f = "loadGeno",
 
 
 
-
-setGeneric(name="loadStatRep",
-           def = function(object){standardGeneric("loadStatRep")}
-)
-
 #' Load the statistic for various replicate of a QuantiNemo simulation
 #' @examples
 #' my_sim <- new("simulation")
@@ -85,6 +79,10 @@ setGeneric(name="loadStatRep",
 #' for (i in 1:10){
 #'   plot(stat.r$adlt.ind[stat.r$replicate==i])
 #'  }
+setGeneric(name="loadStatRep",
+           def = function(object){standardGeneric("loadStatRep")}
+)
+
 setMethod(f = "loadStatRep",
           signature = "simulation",
           definition= function(object){
@@ -92,11 +90,6 @@ setMethod(f = "loadStatRep",
           }
 )
 
-
-
-setGeneric(name="loadStatPatch",
-           def = function(object, stat.name){standardGeneric("loadStatPatch")}
-)
 
 #' Load the statistic (mean) of a QuantiNemo simulation for each patch and return it as a matrix
 #' @param stat.name String representing the name of the statisitic to load
@@ -109,6 +102,10 @@ setGeneric(name="loadStatPatch",
 #' my_sim.base = new("simulation", parameters = parameters)
 #' run(my_sim, verbose =FALSE)
 #' plot(loadStatPatch(my_sim, "adlt.nbInd_p")[1, ])
+setGeneric(name="loadStatPatch",
+           def = function(object, stat.name){standardGeneric("loadStatPatch")}
+)
+
 
 setMethod(f = "loadStatPatch",
           signature = "simulation",

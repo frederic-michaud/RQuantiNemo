@@ -1,12 +1,18 @@
 Package: RQuantiNemo
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
+Title: Interacting with the program QuantiNemo
+Version: 0.1
 Date: 2017-10-10
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
-Depends: methods
-Suggests: testthat
+Author: Frederic Michaud
+Maintainer: Frederic Michaud <frederic.michaud@unil.ch>
+Description: This package allows to write input file, launch and 
+    load results from the population genetic software QuantiNemo. 
+    It is meant to simplify the interaction with it, and improvement 
+    of the workflow while working with QuantiNemo
+License: LGPL 3
+Depends: 
+Suggests: testthat ,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr
