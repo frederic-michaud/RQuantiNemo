@@ -132,10 +132,11 @@ setMethod(f = "writeGenoFile",
                 ini.size <- getParameter(object, "ini_size", default = 0)
                 if(ini.size ==0) {ini.size <- getParameter(object, "patch_capacity", default = 1)}
                 cat(getParameter(object, "patch_number", default = 1),
-                    getParameter(object, paste(pre, "_loci", collapse = ""), default = 1),
+                    getParameter(object, paste(pre, "_loci", sep = ""), default = 1),
                     ini.size * getParameter(object, "patch_number", default = 1),
-                    floor(log10(getParameter(object, paste(pre, "_all", collapse = ""), default = 255))) + 1,
+                    floor(log10(getParameter(object, paste(pre, "_all", sep = ""), default = 255))) + 1,
                     "\n")
+                #cat("1 2 2 1 \n")
                 for(trait in 1:getParameter(object, paste(pre, "_nb_trait", collapse = ""), default = 1)){
                   for(allele in 1:getParameter(object, paste(pre, "_loci", collapse = ""), default = 1)){
                     cat("n",as.character(trait),"_l",as.character(allele), "\n", sep = "")
