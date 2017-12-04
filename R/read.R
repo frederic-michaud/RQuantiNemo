@@ -122,6 +122,6 @@ setMethod(f = "loadStatPatch",
               patch.name = paste(stat.name,formatC(patch, width = width,  flag = "0"),sep="")
               stat.patch[patch, ] <- stat[[patch.name]]
             }
-            return(stat.patch)
+            return(t(stat.patch))
           }
 )

@@ -127,7 +127,6 @@ setMethod(f = "writeGenoFile",
               {
                 pre = substr(file, 1, nchar(file)-14) #either quanti or ntrl
                 file.name = paste(object@sim.directory,file,".ini",sep="")
-                message(c("printing into :",file.name, sep = ""))
                 sink(file.name)
                 ini.size <- getParameter(object, "ini_size", default = 0)
                 if(ini.size ==0) {ini.size <- getParameter(object, "patch_capacity", default = 1)}
