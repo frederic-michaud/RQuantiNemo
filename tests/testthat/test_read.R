@@ -1,3 +1,5 @@
+context("read")
+
 test_that('Loading statistique', {
   my_sim = new("simulation",
                parameters = list("generations" = 1250, "patch_capacity" = 100,stat = "{adlt.nbInd}")
@@ -29,7 +31,7 @@ parameters = list("generations" = 5,
   run(my_sim, verbose =FALSE)
   stat.patch <- loadStatPatch(my_sim, "adlt.nbInd_p")
   expect_equal(stat.patch[1, 1],1)
-  expect_equal(stat.patch[5, 1],5)
+  expect_equal(stat.patch[1, 5],5)
 })
 
 

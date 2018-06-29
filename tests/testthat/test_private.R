@@ -1,3 +1,4 @@
+context("private")
 
 test_that('Writting the command to launch quantiNemo', {
   print(getwd())
@@ -8,11 +9,11 @@ test_that('Writting the command to launch quantiNemo', {
 test_that('Writting files', {
   my_sim = new("simulation",
                parameters = list("generations" = 100, "patch_capacity" = 100),
-               sim.dir = "/Users/frederic/Desktop/test_package/"
+               sim.dir = "../test_package/"
                
                )
   writeInput(my_sim)
-  expect_true(file.exists(file.path("/Users/frederic/Desktop/test_package/my_simulation.ini")))
+  expect_true(file.exists(file.path("../test_package/my_simulation.ini")))
 })
 
 test_that('Running a minimal simulation', {
