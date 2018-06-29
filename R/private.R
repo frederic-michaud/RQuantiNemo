@@ -23,6 +23,7 @@ setMethod(f = "getCommand",
 #' @examples
 #' my_simulation <- new("simulation")
 #' writeInput(my_simulation)
+#' @export
 setGeneric(name="writeInput",
            def = function(object, verbose = TRUE){
              standardGeneric("writeInput")

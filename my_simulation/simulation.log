@@ -1,9 +1,10 @@
 #############################################
-#           q u a n t i N E M O 2           #
-#   version 0.9.0 [Oct 17 2017; 14:28:01]   #
+#                quantiNemo 2               #
+#   version 2.0.0 [Mar 27 2018; 14:46:00]   #
+#       Commit N° : 0cd420b           #
 #                                           #
 #              Simulation log               #
-# simulation started on 23-10-2017 10:31:18 #
+# simulation started on 29-06-2018 11:03:47 #
 #              (log as input)               #
 #############################################
 
@@ -11,7 +12,7 @@
 ## simulation
 _settings_file ./my_simulation.ini
 folder ./my_simulation
-seed 
+seed {1530263027 3712}
 
 ## metapop
 generations 1000
@@ -19,7 +20,7 @@ patch_capacity 100
 
 
 #############################################
-#  simulation ended on 23-10-2017 10:31:19  #
+#  simulation ended on 29-06-2018 11:03:47  #
 #                                           #
-#  duration of the simulation was 00:00:01  #
+#  duration of the simulation was 00:00:00  #
 #############################################

@@ -1,3 +1,4 @@
+#' @export
 setClass(
   Class ="simulation",
   representation = representation(parameters = "list",       #the list of parameters for quantinemo
@@ -19,7 +20,7 @@ setClass(
 #' @return A simulation object ready to be run.
 #' @examples
 #' my_simulation <- new("simulation", parameters = (list(generations = 1000, patch_capacity =100)), sim.name = "my_new_sim")
-#' 
+#' @export
 setMethod(
   f ="initialize",
   signature ="simulation",
@@ -64,6 +65,7 @@ setMethod(
 #' @examples
 #' my_simulation <- new("simulation")
 #' run(my_simulation)
+#' @export
 setGeneric(name="run",
            def = function(object, verbose=TRUE){standardGeneric("run")}
 )
@@ -97,6 +99,7 @@ setMethod(f = "run",
 #' my_sim <- new("simulation")
 #' my_sim  <- setParameter(my_sim,"patch_number",5)
 #' my_sim  <- setParameter(my_sim,"patch_ini_size","{10 100 10 100 67}")
+#' @export
 setGeneric(name="setParameter",
            def = function(object,name,value){standardGeneric("setParameter")}
 )
@@ -119,6 +122,7 @@ setMethod(f = "setParameter",
 #' alleles <- data.frame(locus = rep(1,5),allele = seq(1,5),value = seq(-2,2))
 #' my_sim <-  addFile(my_sim, "quanti_allelic_file",alleles)
 #' run(my_sim)
+#' @export
 setGeneric(name="addFile",
            def = function(object,file.name,file.content){standardGeneric("addFile")}
 )
@@ -140,6 +144,7 @@ setMethod(f = "addFile",
 #' my_sim <- new("simulation", sim.name = "test72")
 #' my_sim <- setParameter(my_sim,"quanti_all",5)
 #' print(my_sim)
+#' @export
 
 print.simulation <- function(object,...){
   cat(rep("-",40),"\n")

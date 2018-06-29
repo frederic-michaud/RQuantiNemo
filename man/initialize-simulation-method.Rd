@@ -7,7 +7,7 @@
 \usage{
 \S4method{initialize}{simulation}(.Object, sim.name = "my_simulation",
   parameters = list(generations = 1000, patch_capacity = 100),
-  sim.dir = "./", exe.dir = "", exe.name = "quantiNemo2")
+  sim.dir = "./", exe.dir = "", exe.name = NULL)
 }
 \arguments{
 \item{sim.name}{Name of the simulation (input file and output folder)}
@@ -28,5 +28,4 @@ Build a minimal object for a QuantiNemo simulation
 }
 \examples{
 my_simulation <- new("simulation", parameters = (list(generations = 1000, patch_capacity =100)), sim.name = "my_new_sim")
-
 }

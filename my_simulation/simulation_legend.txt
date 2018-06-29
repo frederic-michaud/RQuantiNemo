@@ -3,3 +3,15 @@ Legend of the used statistics
 
 Statistic             Legend
 --------------------------------------------------------------
+alive.rpl           : Nb alive replicates
+adlt.nbInd_p01      : Number of individuals  adult of population 1
+adlt.nbInd_p02      : Number of individuals  adult of population 2
+adlt.nbInd_p03      : Number of individuals  adult of population 3
+adlt.nbInd_p04      : Number of individuals  adult of population 4
+adlt.nbInd_p05      : Number of individuals  adult of population 5
+adlt.nbInd_p06      : Number of individuals  adult of population 6
+adlt.nbInd_p07      : Number of individuals  adult of population 7
+adlt.nbInd_p08      : Number of individuals  adult of population 8
+adlt.nbInd_p09      : Number of individuals  adult of population 9
+adlt.nbInd_p10      : Number of individuals  adult of population 10
+adlt.nbInd_p11      : Number of individuals  adult of population 11

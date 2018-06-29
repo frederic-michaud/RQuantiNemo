@@ -1,8 +1,10 @@
-Program:    quantiNemo2 (quantitative genetics simulator)
+Program:    quantiNemo 2 (quantitative genetics simulator)
 
-Version:    0.9.0 [Oct 17 2017; 14:27:59]
+Version:    2.0.0 [Mar 27 2018; 14:45:59]
+Commit N°:  0cd420b
 
 Authors:    Samuel Neuenschwander (samuel.neuenschwander@unil.ch) &
+            Frederic Michaud (frederic.michaud@unil.ch)
             Jerome Goudet (jerome.goudet@unil.ch)
             Department of Ecology and Evolution
             University of Lausanne, Switzerland
@@ -47,4 +49,4 @@ SIMULATION    replicate 1/1 [00:00:00] 1/5   RAM: 0.000000 MB    replicate 1/1
 
 ----- SIMULATION done (CPU time: 00:00:00s) -----
 
-quantiNemo2 terminated successfully!
+quantiNemo terminated successfully!

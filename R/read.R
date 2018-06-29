@@ -5,6 +5,7 @@
 #' run(my_sim)
 #' stat <- loadStat(my_sim)
 #' plot(stat$adlt.ind)
+#' @export
 setGeneric(name="loadStat",
            def = function(object){standardGeneric("loadStat")}
 )
@@ -27,6 +28,7 @@ setMethod(f = "loadStat",
 #' run(my_sim)
 #' pheno <- loadPheno(my_sim)
 #' table(pheno$V2)
+#' @export
 setGeneric(name="loadPheno",
            def = function(object,generation = -1,replicate= 0){standardGeneric("loadPheno")}
 )
@@ -50,6 +52,8 @@ setMethod(f = "loadPheno",
 #' run(my_sim)
 #' geno <- loadGeno(my_sim)
 #' table(geno$V2)
+#' @export
+
 setGeneric(name="loadGeno",
            def = function(object,generation = -1,replicate= 0){standardGeneric("loadGeno")}
 )
@@ -79,6 +83,7 @@ setMethod(f = "loadGeno",
 #' for (i in 1:10){
 #'   plot(stat.r$adlt.ind[stat.r$replicate==i])
 #'  }
+#'  @export
 setGeneric(name="loadStatRep",
            def = function(object){standardGeneric("loadStatRep")}
 )
@@ -102,6 +107,7 @@ setMethod(f = "loadStatRep",
 #' my_sim.base = new("simulation", parameters = parameters)
 #' run(my_sim, verbose =FALSE)
 #' plot(loadStatPatch(my_sim, "adlt.nbInd_p")[1, ])
+#' @export
 setGeneric(name="loadStatPatch",
            def = function(object, stat.name){standardGeneric("loadStatPatch")}
 )
