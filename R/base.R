@@ -27,8 +27,25 @@ setMethod(
                          parameters = list("generations" = 1000, "patch_capacity" = 100),
                          sim.dir="./",
                          exe.dir="",
-                         exe.name="quantiNemo2"
+                         exe.name=NULL
                         ){
+    if(is.null(exe.name))
+    {
+      os <- Sys.info()["sysname"]
+      if(os == "Linux"){
+        exe.name = "quantinemo.linux"
+      }
+      else if(os == "Darwin"){
+        exe.name = "quantinemo.mac"
+      }
+      else if(os == "Windows"){
+        exe.name = "quantiNemo.exe"
+      }
+      else{
+        message("sorry, I was not able to find which executable to use on your system. Please use exe.name to help me.")
+      }
+      
+    }
      .Object@sim.name <- sim.name
      .Object@sim.directory <- sim.dir
      .Object@parameters <- parameters
