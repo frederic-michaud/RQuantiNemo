@@ -173,12 +173,12 @@ setMethod(f = "getPostInfo",
             if(generation < 1){
               generation <-  object@parameters$generations + generation + 1
             }
-            value.g = paste("_g",formatC(generation, width = width.gen,  flag = "0"),sep="")
+            value.g = paste("_g",formatC(generation,format = "d", width = width.gen,  flag = "0"),sep="")
             
             value.r <- ""
             if(replicate > 0){
              width.rep <- floor(log10(object@parameters$replicates))+1
-             value.r = paste("_r",formatC(replicate, width = width.rep,  flag = "0"),sep="")
+             value.r = paste("_r",formatC(replicate,format = "d", width = width.rep,  flag = "0"),sep="")
             }
             return(paste(value.g, value.r,sep=""))
           }
